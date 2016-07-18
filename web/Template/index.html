@@ -12,7 +12,7 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-        	<div>
+        	<div>Login:
         		<form action="login" method="post">
                     First name: 
                     <input type="text" name="email">
@@ -22,7 +22,24 @@ and open the template in the editor.
                     <br>
                     <input type="submit" value="Submit">
                 </form> 
+        	</div>        	
+            <div>Registrazione:
+        		<form action="registrazione" method="post">
+                    First name: 
+                    <input type="text" name="email">
+                    <br>
+                    Last name: 
+                    <input type="password" name="password">
+                    <br>
+                    <input type="submit" value="Submit">
+                </form> 
         	</div>
+            <div>
+                Logout:
+                <form action="logout">
+                    <input type="submit" value="logout">                    
+                </form>
+            </div>
         </div>
     </body>
 </html>

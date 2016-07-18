@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,7 +6,6 @@
  */
 package uti;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -30,13 +30,12 @@ public class Intermedio {
      * @throws Exception 
      */
     public static String annida(String par1,String val1,String par2,String val2){
-        return par1 + "=" + "'" + val1 + "' AND '" + par2 + "=" + "'" + val2 + "'";
+        return par1 + "=" + "'" + val1 + "' && '" + par2 + "=" + "'" + val2 + "'";
     }
     public static void connect() throws Exception{
         try{ 	                    
     	    Class.forName("com.mysql.jdbc.Driver");                 
     	    db = DriverManager.getConnection(url,user,psw);
-    	    System.out.println("connesso");
     	}
     	catch(SQLException e){
     	    System.out.println(e.getMessage());
@@ -47,15 +46,10 @@ public class Intermedio {
         Intermedio.db.close();
     }
     
-    public static ResultSet selectRecord(String table, String condition,HttpServletResponse response) throws SQLException, IOException {
+    public static ResultSet selectRecord(String table, String condition) throws SQLException, IOException {
         // Generazione query
-        String query = "SELECT * FROM " + table + " WHERE " + condition;
+      String query = "SELECT * FROM " + table + " WHERE " + condition;
         // Esecuzione query
-            PrintWriter out = response.getWriter();
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Sei 11" + query +"');");
-            out.println("</script>"); 
-        
         return Intermedio.executeQuery(query);
     }
     /**
@@ -113,7 +107,29 @@ public class Intermedio {
      * @return dati     prelevati
      * @throws java.sql.SQLException
      */
-    public static boolean insertRecord(String table, Map<String, Object> data) throws SQLException{
+        public static int insertRecord1(String table, Map<String, Object> data, HttpServletResponse response) throws SQLException, IOException, ClassNotFoundException{
+        String query1="";
+        String query2="";
+        Object value;
+        String attr;
+        for(Map.Entry<String,Object> e:data.entrySet()){
+            attr = e.getKey();
+            value = e.getValue();
+            System.out.println(value);
+            if(value instanceof Integer){
+                query2 = query2 + value + ", ";
+            }
+            else{
+                value = value.toString().replace("\'", "\\'");
+                query2=query2+"'" + value + "', ";
+            }
+        }
+        query1 = query1.substring(0, query1.length() - 2);
+        query2 = query2.substring(0, query2.length() - 2);
+        String query = "INSERT INTO " + table + " (" + query1 + ") VALUES (" + query2 + ")";
+        return Intermedio.updateQuery(query);
+    }
+    public static int insertRecord(String table, Map<String, Object> data) throws SQLException{
         // Generazione query
         String query = "INSERT INTO " + table + " SET ";
         Object value;
@@ -143,7 +159,7 @@ public class Intermedio {
      * @return              true se l'inserimento è andato a buon fine, false altrimenti
      * @throws java.sql.SQLException
      */
-    public static boolean updateRecord(String table, Map<String,Object> data, String condition) throws SQLException{
+    public static int updateRecord(String table, Map<String,Object> data, String condition) throws SQLException{
         // Generazione query
         String query = "UPDATE " + table + " SET ";
         Object value;
@@ -174,7 +190,7 @@ public class Intermedio {
      * @return              true se l'eliminazione è andata a buon fine, false altrimenti
      * @throws java.sql.SQLException
      */
-    public static boolean deleteRecord(String table, String condition) throws SQLException{
+    public static int deleteRecord(String table, String condition) throws SQLException{
         // Generazione query
         String query = "DELETE FROM " + table + " WHERE " + condition;
         // Esecuzione query
@@ -208,7 +224,7 @@ public class Intermedio {
      * @return
      * @throws java.sql.SQLException
      */
-    public static boolean resetAttribute(String table, String attribute, String condition) throws SQLException{
+    public static int resetAttribute(String table, String attribute, String condition) throws SQLException{
         String query = "UPDATE " + table + " SET " + attribute + " = NULL WHERE " + condition;
         return Intermedio.updateQuery(query);
     }
@@ -232,14 +248,14 @@ public class Intermedio {
      * updateQuery personalizzata
      * @param query query da eseguire
      */
-    private static boolean updateQuery(String query) throws SQLException{
+    private static int updateQuery(String query) throws SQLException{
         
         Statement s1;
         
         s1 = Intermedio.db.createStatement();
-        s1.executeUpdate(query); 
+        int c=s1.executeUpdate(query); 
         s1.close();
-        return true; 
+        return c; 
 
     }
    // </editor-fold>
