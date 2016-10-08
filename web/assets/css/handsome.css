@@ -1,0 +1,85 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29-set-2016, 12.29.03
+    Author     : MatteoR
+*/
+
+.centra{
+    text-align: center;    
+}
+
+
+.sinistra{
+    width: 40%;
+
+}
+
+.destra{
+    width: 40%;
+    margin-left: 15%;
+}
+
+.imagine{
+    border-radius: 50%;
+}
+
+.fot{
+    margin-bottom: 5%;
+}
+
+#pp{
+    height: 20%;
+    width:20%;
+}
+
+.sopra{
+    margin-top: 15%;
+}
+
+#myImg{
+    width: 80%;
+}
+
+
+.myFile {
+    position: relative;
+    overflow: hidden;
+}
+.myFile input[type="file"] {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    font-size: 100px;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+}
+
+.upload{
+    margin-top:12%;
+    width: 70%;
+}
+
+.format{
+    max-height: 450px;
+}
+
+.dim{
+    max-height: 700px;
+}
+
+.insmag{
+    margin-top: 4%;
+    width: 45%;
+}
+
+
+#regt{
+    width: 100%;
+    font-size: 90%;
+}

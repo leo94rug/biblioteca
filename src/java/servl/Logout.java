@@ -17,7 +17,7 @@ public class Logout extends HttpServlet{
     private void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException, Exception{
         Map<String,Object> data= new HashMap<String,Object>();    
         Gestione.invalida(request);
-            FreeMarker.process("index.html", data, response, getServletContext());
+            FreeMarker.process("index.jsp", data, response, getServletContext());
     }
 
      @Override

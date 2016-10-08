@@ -25,6 +25,40 @@
         <url-pattern>/registrazione</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>Insert_book</servlet-name>
+        <servlet-class>servl.Insert_book</servlet-class>
+        <multipart-config>
+            <!--
+            <location>/tmp</location> temporary files location (DEF: "") -->
+            <max-file-size>20848820</max-file-size>
+            <!-- max size of accepted uploadd (DEF: unlimited!) -->
+            <max-request-size>418018841</max-request-size>
+            <!-- max size of multipart requests (may contain more files or data) (DEF: ulimited!) -->
+            <!-- <file-size-threshold>1048576</file-size-threshold> max size of files to hold in memory (without writing to temporary disk file) (DEF: 0) -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Insert_book</servlet-name>
+        <url-pattern>/opera</url-pattern>
+    </servlet-mapping>
+        <servlet>
+        <servlet-name>Insert_image</servlet-name>
+        <servlet-class>servl.Insert_image</servlet-class>
+        <multipart-config>
+            <!--
+            <location>/tmp</location> temporary files location (DEF: "") -->
+            <max-file-size>20848820</max-file-size>
+            <!-- max size of accepted uploadd (DEF: unlimited!) -->
+            <max-request-size>418018841</max-request-size>
+            <!-- max size of multipart requests (may contain more files or data) (DEF: ulimited!) -->
+            <!-- <file-size-threshold>1048576</file-size-threshold> max size of files to hold in memory (without writing to temporary disk file) (DEF: 0) -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Insert_image</servlet-name>
+        <url-pattern>/immagine</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>Logout</servlet-name>
         <servlet-class>servl.Logout</servlet-class>
     </servlet>
@@ -32,10 +66,41 @@
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+        <servlet>
+        <servlet-name>change_registrazione</servlet-name>
+        <servlet-class>servl.change_registrazione</servlet-class>
+    </servlet>
+        <servlet-mapping>
+        <servlet-name>change_registrazione</servlet-name>
+        <url-pattern>/ch_registrazione</url-pattern>
+    </servlet-mapping>
+        <servlet>
+        <servlet-name>change_insert_image</servlet-name>
+        <servlet-class>servl.change_insert_image</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>change_insert_image</servlet-name>
+        <url-pattern>/ch_insert_image</url-pattern>
+    </servlet-mapping>
+        <servlet>
+        <servlet-name>change_insert_book</servlet-name>
+        <servlet-class>servl.change_insert_book</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>change_insert_book</servlet-name>
+        <url-pattern>/ch_insert_book</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>homepage</welcome-file>
     </welcome-file-list>
+    <context-param>
+        <param-name>uploads.directory</param-name>
+        <!-- Tomcat must have write permissions on this folder -->
+        <param-value>C:\Users\leo\Documents\NetBeansProjects\BibliotecaOOP\web\cover</param-value>
+    </context-param>
 </web-app>
+

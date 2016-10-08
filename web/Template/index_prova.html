@@ -40,6 +40,27 @@ and open the template in the editor.
                     <input type="submit" value="logout">                    
                 </form>
             </div>
+            <div>
+                File Upload to Database Demo
+                <form method="post" action="upload" enctype="multipart/form-data">
+				Id opera:
+                                <input type="text" name="id_opera" size="50"/>
+                                Pagina:
+			        <input type="text" name="pagina" size="50"/>
+                                Photo: 
+                                <input type="file" name="photo"/>
+				<input type="submit" value="Save">
+		</form>
+            </div>
+           <div>
+                Cerca immagine
+                <form method="post" action="download"
+                      >
+				Id opera:
+                                <input type="text" name="id_opera" size="50"/>
+				<input type="submit" value="Save">
+		</form>
+            </div>
         </div>
     </body>
 </html>
